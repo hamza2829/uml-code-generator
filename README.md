@@ -76,9 +76,14 @@ The sensor example contains synthetic names and data structure only. It contains
 
 <!-- CI_METRICS_START -->
 | Metric | Measured in GitHub Actions |
-| --- | --- |
-| Tests and line coverage | Awaiting the first completed CI measurement |
+| --- | ---: |
+| JUnit tests | 132 |
+| Failures / errors / skipped | 0 / 0 / 0 |
+| JaCoCo line coverage | 98.69% (528/535 lines) |
+| Required line coverage | 80% |
 <!-- CI_METRICS_END -->
+
+Measured in [GitHub Actions run 41889902780](https://github.com/hamza2829/uml-code-generator/actions/runs/41889902780) for commit `64e5c609273706996d54658fda7b22a9b5ee94dd`. Its generated code, diagrams, and test and coverage reports are available in the run artifact.
 
 `ci/measure.py` sums the real Surefire XML test counts and reads the root JaCoCo LINE counter. It writes JSON, a Markdown table, and the Actions job summary. Coverage includes all production Java classes, including the CLI, with no exclusions. Parameterized invocations count as separate tests.
 
