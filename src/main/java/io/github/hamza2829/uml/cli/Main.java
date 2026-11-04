@@ -16,14 +16,14 @@ public final class Main {
         if (args.length == 1 && args[0].equals("--help")) { usage(out); return 0; }
         if (args.length < 2 || (!args[0].equals("validate") && !args[0].equals("generate"))) { usage(err); return 2; }
         try {
-        Path output = null;
-        boolean flatten = false;
-        for (int i = 2; i < args.length; i++) {
-            if (args[0].equals("generate") && args[i].equals("--output") && i + 1 < args.length && output == null) output = Path.of(args[++i]);
-            else if (args[0].equals("generate") && args[i].equals("--flatten") && !flatten) flatten = true;
-            else { usage(err); return 2; }
-        }
-        if (args[0].equals("generate") && output == null) { usage(err); return 2; }
+            Path output = null;
+            boolean flatten = false;
+            for (int i = 2; i < args.length; i++) {
+                if (args[0].equals("generate") && args[i].equals("--output") && i + 1 < args.length && output == null) output = Path.of(args[++i]);
+                else if (args[0].equals("generate") && args[i].equals("--flatten") && !flatten) flatten = true;
+                else { usage(err); return 2; }
+            }
+            if (args[0].equals("generate") && output == null) { usage(err); return 2; }
             var model = new XmiParser().parse(Path.of(args[1]));
             var findings = new RulesEngine().validate(model);
             findings.forEach(out::println);

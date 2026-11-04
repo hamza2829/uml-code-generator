@@ -54,7 +54,7 @@ public final class XmiParser {
                     if (root != null) fail(e, "Multiple UML models are not supported");
                     root = e;
                 }
-                if (kind(e).equals("PrimitiveType")) {
+                if (local(e).equals("packagedElement") && kind(e).equals("PrimitiveType")) {
                     if (!Model.PRIMITIVES.contains(e.getAttribute("name"))) fail(e, "Unknown primitive type");
                     primitiveIds.put(requiredId(e), e.getAttribute("name"));
                 }
