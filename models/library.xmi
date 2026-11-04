@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="libraryModel" name="library">
+    <packagedElement xmi:type="uml:Package" xmi:id="catalogPackage" name="catalog">
+      <packagedElement xmi:type="uml:Class" xmi:id="book" name="Book">
+        <ownedComment xmi:id="bookDoc"><body>A catalog entry. Synthetic example data only.</body></ownedComment>
+        <ownedAttribute xmi:id="title" name="title"><type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/></ownedAttribute>
+        <ownedAttribute xmi:id="tags" name="tags" lower="0" upper="*"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/></ownedAttribute>
+        <ownedAttribute xmi:id="genreProperty" name="genre" type="genre"/>
+        <ownedOperation xmi:id="rename" name="rename">
+          <ownedComment xmi:id="renameDoc" body="Change the display title."/>
+          <ownedParameter xmi:id="newTitle" name="newTitle" direction="in"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/></ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="genre" name="Genre">
+        <ownedLiteral xmi:id="fiction" name="FICTION"/><ownedLiteral xmi:id="reference" name="REFERENCE"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="reader" name="Reader">
+      <ownedAttribute xmi:id="readerName" name="name"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/></ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="loans" name="loans" memberEnd="readerEnd bookEnd">
+      <ownedEnd xmi:id="readerEnd" name="readers" type="reader"><lowerValue xmi:type="uml:LiteralInteger" xmi:id="readerLower" value="0"/><upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="readerUpper" value="*"/></ownedEnd>
+      <ownedEnd xmi:id="bookEnd" name="books" type="book"><lowerValue xmi:type="uml:LiteralInteger" xmi:id="bookLower" value="0"/><upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="bookUpper" value="*"/></ownedEnd>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

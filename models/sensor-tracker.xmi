@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.omg.org/spec/UML/20131001" xmlns:sysml="http://www.omg.org/spec/SysML/20100301/SysML-profile">
+  <uml:Model xmi:id="aerisModel" name="aeris">
+    <ownedComment xmi:id="systemDoc" body="Synthetic air defence sensor and radar tracker software structure. No operational algorithms or real specifications."/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="stringType" name="String"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="integerType" name="Integer"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="system" name="SurveillanceSystem">
+      <ownedComment xmi:id="surveillanceDoc" body="Aeris demonstration sensor assembly."/>
+      <ownedAttribute xmi:id="systemLabel" name="label" type="stringType"/>
+      <ownedAttribute xmi:id="radarPart" name="radar" type="radar" aggregation="composite"/>
+      <ownedAttribute xmi:id="trackerPart" name="tracker" type="tracker" aggregation="composite"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="sensingPackage" name="sensing">
+      <packagedElement xmi:type="uml:Class" xmi:id="baseSensor" name="BaseSensor" isAbstract="true">
+        <ownedAttribute xmi:id="sensorId" name="sensorId" type="stringType"/>
+        <ownedAttribute xmi:id="enabled" name="enabled"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/></ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="feed" name="SensorFeed">
+        <ownedOperation xmi:id="readTracks" name="readTracks">
+          <ownedComment xmi:id="readDoc" body="Return demonstration track records."/>
+          <ownedParameter xmi:id="readResult" direction="return" type="track" lower="0" upper="*"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="radar" name="RadarSensor">
+        <generalization xmi:id="radarGeneral" general="baseSensor"/>
+        <interfaceRealization xmi:id="radarFeed" contract="feed"/>
+        <ownedAttribute xmi:id="radarLabel" name="label" type="stringType"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="trackingPackage" name="tracking">
+      <packagedElement xmi:type="uml:Class" xmi:id="tracker" name="RadarTracker">
+        <ownedAttribute xmi:id="revision" name="revision" type="integerType"/>
+        <ownedOperation xmi:id="accept" name="accept"><ownedParameter xmi:id="acceptedTrack" name="track" type="track"/></ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="track" name="TrackRecord">
+        <ownedComment xmi:id="trackDoc"><body>Synthetic record identity and lifecycle state.</body></ownedComment>
+        <ownedAttribute xmi:id="trackId" name="trackId" type="stringType"/>
+        <ownedAttribute xmi:id="trackState" name="state" type="state"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Enumeration" xmi:id="state" name="TrackState">
+        <ownedLiteral xmi:id="newState" name="NEW"/><ownedLiteral xmi:id="activeState" name="ACTIVE"/><ownedLiteral xmi:id="closedState" name="CLOSED"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="trackOwnership" name="trackOwnership" memberEnd="ownerEnd trackEnd">
+        <ownedEnd xmi:id="ownerEnd" name="owner" type="tracker" lower="0" upper="1"/>
+        <ownedEnd xmi:id="trackEnd" name="tracks" type="track" lower="0" upper="*"/>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+  <sysml:Block xmi:id="systemBlock" base_Class="system"/>
+  <sysml:Block xmi:id="radarBlock" base_Class="radar"/>
+  <sysml:Block xmi:id="trackerBlock" base_Class="tracker"/>
+</xmi:XMI>

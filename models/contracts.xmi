@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="contractsModel" name="contracts">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="string" name="String"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="named" name="Named">
+      <ownedAttribute xmi:id="name" name="name"><type xmi:idref="string"/></ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="service" name="Service">
+      <generalization xmi:id="namedGeneral" general="named"/>
+      <ownedOperation xmi:id="status" name="status">
+        <ownedParameter xmi:id="statusResult" direction="return"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/></ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="serviceImpl" name="LocalService">
+      <interfaceRealization xmi:id="serviceContract" contract="service"/>
+      <ownedAttribute xmi:id="peers" name="peers" type="peer" association="servicePeers" lower="0" upper="*"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="peer" name="Peer">
+      <ownedAttribute xmi:id="serviceRef" name="service" type="serviceImpl" association="servicePeers" lower="0" upper="1"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="servicePeers" name="servicePeers">
+      <memberEnd xmi:idref="peers"/><memberEnd xmi:idref="serviceRef"/>
+    </packagedElement>
+  </uml:Model>
+</xmi:XMI>

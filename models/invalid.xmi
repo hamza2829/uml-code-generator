@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:sysml="http://www.omg.org/spec/SysML/20100301/SysML-profile">
+  <uml:Model xmi:id="invalidModel" name="invalidmodel">
+    <packagedElement xmi:type="uml:Class" xmi:id="bad" name="badType">
+      <generalization xmi:id="badGeneral" general="loop"/>
+      <ownedAttribute xmi:id="missingType" name="Upper"/>
+      <ownedAttribute xmi:id="badBounds" name="range" lower="3" upper="1"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/></ownedAttribute>
+      <ownedAttribute xmi:id="noName"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/></ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="loop" name="badType"><generalization xmi:id="loopGeneral" general="bad"/></packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="unnamed"/>
+  </uml:Model>
+  <sysml:Block xmi:id="badBlock" base_Class="bad"/>
+</xmi:XMI>

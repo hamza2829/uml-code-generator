@@ -1,0 +1,14 @@
+@startuml
+hide empty members
+class "flat.Rover" as C0 {
+  label : String [1..1]
+}
+class "flat.Drive" as C1 {
+  power : Real [1..1]
+}
+class "flat.Wheel" as C2 {
+  diameter : Real [1..1]
+}
+C0 "1..1 " -- "1..1 drive" C1 : Rover_drive
+C0 "1..1 " -- "4..4 wheels" C2 : Rover_wheels
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+hide empty members
+class "rover.Rover" as C0 <<block>> {
+  label : String [1..1]
+  drive : rover.Drive [1..1]
+  wheels : rover.Wheel [4..4]
+}
+C0 *-- "1..1" C1 : drive
+C0 *-- "4..4" C2 : wheels
+class "rover.Drive" as C1 <<block>> {
+  power : Real [1..1]
+}
+class "rover.Wheel" as C2 <<block>> {
+  diameter : Real [1..1]
+}
+@enduml

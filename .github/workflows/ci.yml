@@ -1,0 +1,40 @@
+name: Java CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Build, test, compile generated code, and enforce coverage
+        run: mvn --batch-mode --no-transfer-progress clean verify
+      - name: Report measured tests and line coverage
+        if: always() && hashFiles('target/site/jacoco/jacoco.xml') != ''
+        run: python3 ci/measure.py
+      - name: Run packaged CLI on every sample
+        run: python3 ci/run_samples.py
+      - name: Upload generated code, PlantUML, tests, and coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-code-diagrams-and-reports
+          path: |
+            target/generated/
+            target/site/jacoco/
+            target/surefire-reports/
+            target/ci-metrics.json
+            target/ci-metrics.md
+          if-no-files-found: error

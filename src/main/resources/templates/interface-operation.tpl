@@ -1,0 +1,2 @@
+{{DOC}}    {{TYPE}} {{NAME}}({{PARAMETERS}});
+

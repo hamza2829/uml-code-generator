@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:blocks="http://www.eclipse.org/papyrus/sysml/1.4/SysML/Blocks">
+  <uml:Model xmi:id="roverModel" name="rover">
+    <packagedElement xmi:type="uml:Class" xmi:id="rover" name="Rover">
+      <ownedComment xmi:id="roverDoc" body="Synthetic inspection rover assembly."/>
+      <ownedAttribute xmi:id="roverLabel" name="label"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/></ownedAttribute>
+      <ownedAttribute xmi:id="drivePart" name="drive" type="drive" aggregation="composite"/>
+      <ownedAttribute xmi:id="wheelParts" name="wheels" type="wheel" aggregation="composite"><lowerValue xmi:id="wheelsLower" xmi:type="uml:LiteralInteger" value="4"/><upperValue xmi:id="wheelsUpper" xmi:type="uml:LiteralUnlimitedNatural" value="4"/></ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="drive" name="Drive">
+      <ownedAttribute xmi:id="power" name="power"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/></ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="wheel" name="Wheel">
+      <ownedAttribute xmi:id="diameter" name="diameter"><type href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/></ownedAttribute>
+    </packagedElement>
+  </uml:Model>
+  <blocks:Block xmi:id="roverBlock" base_Class="rover"/>
+  <blocks:Block xmi:id="driveBlock" base_Class="drive"/>
+  <blocks:Block xmi:id="wheelBlock" base_Class="wheel"/>
+</xmi:XMI>
